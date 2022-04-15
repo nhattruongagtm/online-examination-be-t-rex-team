@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.trex.model.Subject;
 
-import service.SubjectService;
+import service.ISubjectService;
 
 @RestController
 public class SubjectController {
 
-	@Autowired
-	private SubjectService subjectService;
+	private ISubjectService subjectService;
 
-	@GetMapping("subject/${studentId}")
+	@GetMapping("subject/{studentId}")
 	public ResponseEntity<List<Subject>> getAll(@PathParam(value = "studentId") Long studentId) {
+		
 		List<Subject> result = subjectService.getAllByStudentId(studentId);
 		return ResponseEntity.ok(result);
 	}

@@ -10,7 +10,7 @@ import com.example.trex.model.Subject;
 import repository.SubjectRepository;
 
 @Service
-public class SubjectService {
+public class SubjectService implements ISubjectService{
 
 	@Autowired
 	private SubjectRepository subjectRepo;
