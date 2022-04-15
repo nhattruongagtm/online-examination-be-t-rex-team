@@ -16,6 +16,6 @@ public class SubjectService implements ISubjectService{
 	private SubjectRepository subjectRepo;
 
 	public List<Subject> getAllByStudentId(Long studentId) {
-		return subjectRepo.findAllByStudentId(studentId);
+		return subjectRepo.findByStudentId(studentId);
 	}
 }

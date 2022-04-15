@@ -10,5 +10,5 @@ import com.example.trex.model.Subject;
 @Repository
 public interface SubjectRepository extends JpaRepository<Subject, Long> {
 
-	List<Subject> findAllByStudentId(Long studentId);
+	List<Subject> findByStudentId(Long studentId);
 }
