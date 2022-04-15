@@ -14,7 +14,8 @@
 	<name>online-examination-be-t-rex-team</name>
 	<description>online-examination-be-t-rex-team</description>
 	<properties>
-		<java.version>11</java.version>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>
