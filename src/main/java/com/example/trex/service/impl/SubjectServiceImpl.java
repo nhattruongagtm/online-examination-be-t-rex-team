@@ -1,21 +1,23 @@
-package service;
+package com.example.trex.service.impl;
 
 import java.util.List;
 
+import com.example.trex.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.trex.model.Subject;
 
-import repository.SubjectRepository;
+import com.example.trex.repository.SubjectRepository;
 
 @Service
-public class SubjectService implements ISubjectService{
+public class SubjectServiceImpl implements SubjectService {
 
 	@Autowired
 	private SubjectRepository subjectRepo;
 
 	public List<Subject> getAllByStudentId(Long studentId) {
-		return subjectRepo.findByStudentId(studentId);
+		List<Subject> listSubject = subjectRepo.findByStudentId(studentId);
+		return listSubject;
 	}
 }

@@ -1,5 +1,11 @@
 package com.example.trex.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,6 +18,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "student")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Student {
 
 	@Id
@@ -21,41 +30,8 @@ public class Student {
 	@Column(name = "fullname")
 	private String fullname;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "student")
 	private List<Subject> subjects;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getFullname() {
-		return fullname;
-	}
-
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
-	}
-
-	public Student(Long id, String fullname) {
-		super();
-		this.id = id;
-		this.fullname = fullname;
-	}
-
-	public Student() {
-		super();
-	}
-
-	public List<Subject> getSubjects() {
-		return subjects;
-	}
-
-	public void setSubjects(List<Subject> subjects) {
-		this.subjects = subjects;
-	}
 
 }

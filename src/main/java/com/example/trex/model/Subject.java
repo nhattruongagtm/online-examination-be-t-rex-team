@@ -1,16 +1,19 @@
 package com.example.trex.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "subject")
+@Setter
+@Getter
+@NoArgsConstructor
 public class Subject {
 
 	@Id
@@ -20,32 +23,20 @@ public class Subject {
 	@Column(name = "name")
 	private String name;
 
+	@Column(name = "code")
+	private String code;
+
+	@Column(name = "exam_date")
+	@Temporal(TemporalType.DATE)
+	private Date examDate;
+
+	@Column(name = "exam_time")
+	private Integer examTime;
+
+	@Column(name = "exam_grade")
+	private Double grade;
+
 	@ManyToOne
 	@JoinColumn(name = "student_id", referencedColumnName = "id")
 	private Student student;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Student getStudent() {
-		return student;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
-	}
-
 }
