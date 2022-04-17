@@ -8,4 +8,5 @@ import com.example.trex.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 	<S extends User> S save(S entity);
+	User findByUserName(String userName);
 }
