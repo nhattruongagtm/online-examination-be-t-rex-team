@@ -13,19 +13,22 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private AuthRespository authRespository;
     @Override
-    public boolean login(String username, String password) {
+    public User login(String username, String password) {
         User user = authRespository.findByUsernameAndPassword(username,password);
         if(user != null){
-            return true;
+            return user;
         }
-      return false;
+      return null;
     }
 
     @Override
     public User signUp(User user) {
-        User u = authRespository.save(user);
-        if(u.getId()!=null){
-            return u;
+        User check = authRespository.findByUsername(user.getUsername());
+        if(check == null) {
+            User u = authRespository.save(user);
+            if (u.getId() != null) {
+                return u;
+            }
         }
         return null;
     }

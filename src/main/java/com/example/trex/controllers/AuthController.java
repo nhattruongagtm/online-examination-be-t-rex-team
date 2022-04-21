@@ -1,5 +1,6 @@
 package com.example.trex.controllers;
 
+import com.example.trex.dto.AuthDTO;
 import com.example.trex.model.User;
 import com.example.trex.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,14 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("/login")
-    public boolean Login(@RequestBody User user){
-        return authService.login(user.getUsername(),user.getPassword());
-
+    public AuthDTO Login(@RequestBody User user){
+        User u = authService.login(user.getUsername(),user.getPassword());
+        AuthDTO dto = new AuthDTO();
+        dto.setId(u.getId());
+        dto.setName("Nguyen Van A");
+        dto.setPhotoUrl("");
+        dto.setType(0);
+        return dto;
     }
     @PostMapping("/signup")
     public User SignUp(@RequestBody User user){
