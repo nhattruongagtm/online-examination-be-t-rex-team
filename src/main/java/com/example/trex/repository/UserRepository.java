@@ -10,4 +10,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	<S extends User> S save(S entity);
 
 	User findByUsername(String userName);
+	User findByEmail(String email);
+	User findByToken(String token);
 }
