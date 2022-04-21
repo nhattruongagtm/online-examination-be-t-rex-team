@@ -27,8 +27,14 @@ public class User {
 	@Column(name = "tokenCreationDate",columnDefinition = "TIMESTAMP")
 	private LocalDateTime tokenCreationDate;
 
-//	@Column(name = "type")
-//	private int type;
+	@Column(name = "type")
+	private Integer type = 0;
+
+	@Column
+	private String fullName;
+
+	@Column
+	private String photoUrl;
 
 	public Long getId() {
 		return id;
@@ -82,20 +88,34 @@ public class User {
 		super();
 	}
 
+	public Integer getType() {
+		return type;
+	}
 
-//
-//	public int getType() {
-//		return type;
-//	}
-//
-//	public void setType(int type) {
-//		this.type = type;
-//	}
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getPhotoUrl() {
+		return photoUrl;
+	}
+
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
+	}
+
 	public User(Long id, String username, String password) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
-//		this.type = type;
 	}
 
 	public User( String username, String password, String email) {

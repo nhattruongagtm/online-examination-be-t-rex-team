@@ -23,4 +23,18 @@ public class UserController {
         }
         return null;
     }
+//    just edit user data
+    @PutMapping("/update/{id}")
+    public User updateUser(@PathVariable(value = "id") Long id,@RequestBody User u){
+        User user = userService.getUserByID(id);
+        if(user!=null){
+            user.setFullName(u.getFullName());
+            user.setPhotoUrl(u.getPhotoUrl());
+            user.setEmail(u.getEmail());
+            user.setType(u.getType());
+
+            return userService.save(user);
+        }
+        return null;
+    }
 }
