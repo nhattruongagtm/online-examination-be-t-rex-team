@@ -30,7 +30,6 @@ public class SubjectController {
 	 */
 	@GetMapping("subject/{studentId}")
 	public ResponseEntity<List<Subject>> getAll(@PathVariable(value = "studentId") Long studentId) {
-
 		List<Subject> result = subjectService.getAllByStudentId(studentId);
 		return ResponseEntity.ok(result);
 	}

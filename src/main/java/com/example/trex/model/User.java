@@ -10,7 +10,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "user")
 public class User {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -20,6 +19,9 @@ public class User {
 
 	@Column(name = "password")
 	private String password;
+
+//	@Column(name = "type")
+//	private int type;
 
 	public Long getId() {
 		return id;
@@ -49,11 +51,19 @@ public class User {
 		super();
 	}
 
+
+//
+//	public int getType() {
+//		return type;
+//	}
+//
+//	public void setType(int type) {
+//		this.type = type;
+//	}
 	public User(Long id, String username, String password) {
-		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
+//		this.type = type;
 	}
-
 }
