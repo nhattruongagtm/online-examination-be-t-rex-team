@@ -25,7 +25,7 @@ public class AuthController {
             dto.setId(u.getId());
             dto.setName(u.getFullName());
             dto.setPhotoUrl(u.getPhotoUrl());
-            dto.setType(0);
+            dto.setType(u.getType());
             return dto;
         }
         return null;
