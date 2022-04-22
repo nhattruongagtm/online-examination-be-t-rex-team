@@ -23,6 +23,10 @@ import javax.persistence.Table;
 @NoArgsConstructor
 public class Student {
 
+	public Student(Long id){
+		this.id = id;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -34,4 +38,7 @@ public class Student {
 	@OneToMany(mappedBy = "student")
 	private List<Subject> subjects;
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "student")
+	private List<ExamHistory> examHistories;
 }
