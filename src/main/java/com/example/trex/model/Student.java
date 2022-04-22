@@ -8,13 +8,7 @@ import lombok.Setter;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "student")
@@ -34,4 +28,7 @@ public class Student {
 	@OneToMany(mappedBy = "student")
 	private List<Subject> subjects;
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "student")
+	private List<Classes> classes;
 }
