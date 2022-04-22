@@ -2,14 +2,11 @@ package com.example.trex.controllers;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
+import com.example.trex.model.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.trex.model.Subject;
 
@@ -32,5 +29,23 @@ public class SubjectController {
 	public ResponseEntity<List<Subject>> getAll(@PathVariable(value = "studentId") Long studentId) {
 		List<Subject> result = subjectService.getAllByStudentId(studentId);
 		return ResponseEntity.ok(result);
+	}
+	@PutMapping("subject/add-subject")
+	public ResponseEntity<ResponseObject> insertSubject(@RequestBody Subject subject){
+		Subject result = subjectService.insertSubject(subject);
+		return result==null ? ResponseEntity.status(HttpStatus.OK).body(
+				new ResponseObject(
+						"failed",
+						"Môn này đã tồn tại",
+						null
+				)
+		):
+				ResponseEntity.status(HttpStatus.OK).body(
+						new ResponseObject(
+								"ok",
+								"Thêm môn thành công",
+								subject
+						)
+				);
 	}
 }
