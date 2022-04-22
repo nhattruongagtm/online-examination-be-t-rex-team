@@ -39,4 +39,12 @@ public class Subject {
 	@ManyToOne
 	@JoinColumn(name = "student_id", referencedColumnName = "id")
 	private Student student;
+
+	public Subject(String name, String code, Date examDate, Integer examTime, Double grade) {
+		this.name = name;
+		this.code = code;
+		this.examDate = examDate;
+		this.examTime = examTime;
+		this.grade = grade;
+	}
 }
