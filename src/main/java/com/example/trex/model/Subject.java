@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "subject")
@@ -15,6 +16,10 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 public class Subject {
+
+	public Subject(Long id){
+		this.id = id;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,4 +44,8 @@ public class Subject {
 	@ManyToOne
 	@JoinColumn(name = "student_id", referencedColumnName = "id")
 	private Student student;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "subject")
+	private List<ExamHistory> examHistories;
 }
