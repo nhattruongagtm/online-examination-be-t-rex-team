@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface ClassRespository extends CrudRepository<Classes, Long> {
+public interface ClassesRespository extends CrudRepository<Classes, Long> {
 
     List<Classes> findByStudentId(Long studentId);
 }

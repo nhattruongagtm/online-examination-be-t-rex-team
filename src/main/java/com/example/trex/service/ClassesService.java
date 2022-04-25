@@ -5,6 +5,6 @@ import com.example.trex.model.Classes;
 
 import java.util.List;
 
-public interface ClassService {
+public interface ClassesService {
     List<Classes> getStudentId(Long userId);
 }
