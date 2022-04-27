@@ -13,8 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 import java.util.Optional;
 
@@ -77,6 +76,30 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         return "Your password successfull update";
     }
+
+    @Override
+    public User addStudent(User u) {
+        return userRepository.save(u);
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        return user.get();
+    }
+
+    @Override
+    public List<User> getUsers() {
+        List<User> u = new ArrayList<>();
+        List<User> u1 = userRepository.findAll();
+        for (int i = 0; i < u1.size(); i++) {
+            if (u1.get(i).getType() == 0) {
+                u.add(u1.get(i));
+            }
+        }
+        return u;
+    }
+
     public String generateToken(){
         StringBuilder token = new StringBuilder();
         return token.append(

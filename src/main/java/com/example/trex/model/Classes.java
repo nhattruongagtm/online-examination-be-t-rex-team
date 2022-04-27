@@ -5,9 +5,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "class")
+@Table(name = "classes")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -19,13 +20,8 @@ public class Classes {
     @Column(name = "name")
     private String className;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id", referencedColumnName = "id")
-    private Student student;
+    @OneToMany(mappedBy = "classes")
+    private List<User> u;
 
-    public Classes(Long classID, String className, Student student) {
-        this.classID = classID;
-        this.className = className;
-        this.student = student;
-    }
+
 }
