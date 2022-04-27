@@ -1,5 +1,7 @@
 package com.example.trex.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -32,6 +34,7 @@ public class User {
 	private String photoUrl;
 
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "class_id")
 	private Classes classes;
 
