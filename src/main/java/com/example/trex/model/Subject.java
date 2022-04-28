@@ -1,7 +1,6 @@
 package com.example.trex.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,7 +19,6 @@ public class Subject {
 	public Subject(Long id){
 		this.id = id;
 	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -41,6 +39,7 @@ public class Subject {
 	@Column(name = "exam_grade")
 	private Double grade;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "student_id", referencedColumnName = "id")
 	private Student student;
@@ -48,6 +47,13 @@ public class Subject {
 	@JsonIgnore
 	@OneToMany(mappedBy = "subject")
 	private List<ExamHistory> examHistories;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "subject")
+	private List<Exam> examList;
+
+	@OneToMany(mappedBy = "subject")
+	private List<Classes> classes;
 
 	public Subject(String name, String code, Date examDate, Integer examTime, Double grade) {
 		this.name = name;
