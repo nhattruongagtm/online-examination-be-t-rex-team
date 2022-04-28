@@ -38,6 +38,7 @@ public class User {
 	@JoinColumn(name = "class_id")
 	private Classes classes;
 
+
 	public Long getId() {
 		return id;
 	}

@@ -51,4 +51,12 @@ public class ExamSeviceImpl implements ExamService {
         return examRepository.getById(id);
 
     }
+
+    @Override
+    public List<Exam> getListExam(Long id) {
+        return examRepository.findByUserId(id);
+    }
+
+
+
 }

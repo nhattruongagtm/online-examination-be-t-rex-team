@@ -30,6 +30,9 @@ public class Exam {
     private Date date;
 
     private Time time;
+    @ManyToOne
+    @JoinColumn(name = "idTeacher", referencedColumnName = "id")
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "subject",referencedColumnName = "id")
@@ -42,7 +45,8 @@ public class Exam {
                 ", duration=" + duration +
                 ", date=" + date +
                 ", time=" + time +
-                ", subject=" + subject +
+                ", idUser=" + user.getId() +
+                ", subject=" + subject.getName() +
                 '}';
     }
 }
