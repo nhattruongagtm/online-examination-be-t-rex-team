@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
         msg.setTo(email);
 
         msg.setSubject("Password Reset Request");
-        msg.setText("To reset your password, click the link below: \n"+"http://localhost:8080/user/reset-password?token="+user.getToken());
+        msg.setText("To reset your password, click the link below: \n"+"http://localhost:3000/dat-lai-mat-khau?token="+user.getToken());
 
         mailService.sendEmail(msg);
         return "Please check your email to reset password";

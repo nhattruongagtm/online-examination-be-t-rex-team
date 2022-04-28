@@ -30,7 +30,7 @@ public class SubjectController {
 		List<Subject> result = subjectService.getAllByStudentId(studentId);
 		return ResponseEntity.ok(result);
 	}
-	@PutMapping("subject/add-subject")
+	@PostMapping("subject/add-subject")
 	public ResponseEntity<ResponseObject> insertSubject(@RequestBody Subject subject){
 		Subject result = subjectService.insertSubject(subject);
 		return result==null ? ResponseEntity.status(HttpStatus.OK).body(

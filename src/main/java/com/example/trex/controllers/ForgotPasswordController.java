@@ -29,7 +29,7 @@ public class ForgotPasswordController {
         );
     }
 
-    @PutMapping("/reset-password")
+    @GetMapping("/reset-password")
     ResponseEntity<ResponseObject> resetPassword(@RequestParam String token,
                                                  @RequestParam String password){
         String message = service.resetPassword(token, password);
