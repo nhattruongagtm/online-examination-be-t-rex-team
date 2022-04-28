@@ -2,13 +2,17 @@ package com.example.trex.controllers;
 
 
 import com.example.trex.dto.AnswerRequest;
+import com.example.trex.dto.QuestionRequest;
 import com.example.trex.model.ExamHistory;
+import com.example.trex.model.Question;
 import com.example.trex.model.Student;
 import com.example.trex.model.Subject;
 import com.example.trex.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -32,4 +36,13 @@ public class QuestionController {
         return ResponseEntity.ok(questionService.getCorrect(answerRequest));
     }
 
-}
+    @PostMapping(value = "/exam/question")
+    public ResponseEntity<String> getListQuestion(@RequestBody QuestionRequest questionRequest) {
+            questionService.saveListQuestion(questionRequest);
+        return ResponseEntity.ok("ok");
+
+    }
+
+
+
+    }

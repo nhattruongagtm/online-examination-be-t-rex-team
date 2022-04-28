@@ -31,6 +31,10 @@ public class Question {
     @Column(name = "correct")
     private int correct;
 
+    @ManyToOne
+    @JoinColumn(name = "id_subject",referencedColumnName = "id")
+    private Subject subject;
+
     @OneToMany(mappedBy = "question")
     private List<Answer> answers;
 }

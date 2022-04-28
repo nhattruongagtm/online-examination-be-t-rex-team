@@ -62,4 +62,20 @@ public class Subject {
 		this.examTime = examTime;
 		this.grade = grade;
 	}
+
+	@Override
+	public String toString() {
+		return "Subject{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", code='" + code + '\'' +
+				", examDate=" + examDate +
+				", examTime=" + examTime +
+				", grade=" + grade +
+				", student=" + student +
+				", examHistories=" + examHistories +
+				", examList=" + examList +
+				", classes=" + classes +
+				'}';
+	}
 }

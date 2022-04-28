@@ -27,4 +27,13 @@ public class Answer {
     @ManyToOne
     @JoinColumn(name = "question_id", referencedColumnName = "id")
     private Question question;
+
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", question=" + question +
+                '}';
+    }
 }
