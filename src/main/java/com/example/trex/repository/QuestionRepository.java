@@ -17,4 +17,6 @@ public interface QuestionRepository extends CrudRepository<Question, Long> {
    Optional<Question> findById(Long id);
 
 
+    List<Question> findBySubjectId(Long idSubject);
+
 }

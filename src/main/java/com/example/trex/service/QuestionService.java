@@ -12,4 +12,6 @@ public interface QuestionService {
     public ExamHistory getCorrect(AnswerRequest request);
 
     public void saveListQuestion(QuestionRequest listQuestionRequest);
+
+    public List<Question> getListQuestion(Long idSubject,Long idStudent);
 }

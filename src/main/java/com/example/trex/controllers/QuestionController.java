@@ -3,10 +3,7 @@ package com.example.trex.controllers;
 
 import com.example.trex.dto.AnswerRequest;
 import com.example.trex.dto.QuestionRequest;
-import com.example.trex.model.ExamHistory;
-import com.example.trex.model.Question;
-import com.example.trex.model.Student;
-import com.example.trex.model.Subject;
+import com.example.trex.model.*;
 import com.example.trex.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -44,5 +41,15 @@ public class QuestionController {
     }
 
 
+    //load answers of question
+    @PostMapping("exam/question/doing")
+    public List<Question> getListAnswer(@RequestBody String idSubject_idStudent){
+       String[] arrID = idSubject_idStudent.split("_");
+       Long idSubject = Long.valueOf(arrID[0]);
+        Long idStudent = Long.valueOf(arrID[1]);
+
+
+        return questionService.getListQuestion(idSubject,idStudent);
+    }
 
     }

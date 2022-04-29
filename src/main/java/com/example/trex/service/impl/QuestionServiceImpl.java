@@ -93,4 +93,12 @@ public class QuestionServiceImpl implements QuestionService {
         }
     }
 
+    @Override
+    public List<Question> getListQuestion(Long idSubject,Long idStudent) {
+        return questionRepository.findBySubjectId(idSubject);
+    }
+
+
+    //load question
+
 }
