@@ -17,9 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Subject {
 
-	public Subject(Long id){
-		this.id = id;
-	}
+	public Subject(Long id){ this.id = id; }
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

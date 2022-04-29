@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -14,5 +15,7 @@ import java.util.List;
 public class AnswerRequest {
     private Long studentId;
     private Long subjectId;
+    private Integer duration;
+    private Date examDate;
     private List<ChoosedRequest> answers;
 }
