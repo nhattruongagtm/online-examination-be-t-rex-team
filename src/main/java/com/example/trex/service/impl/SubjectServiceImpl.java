@@ -20,4 +20,17 @@ public class SubjectServiceImpl implements SubjectService {
 		List<Subject> listSubject = subjectRepo.findByStudentId(studentId);
 		return listSubject;
 	}
+
+	@Override
+	public Subject insertSubject(Subject subject) {
+		if(subjectRepo.findByName(
+				subject.getName()
+		).size() >0
+		){
+
+			return null;
+		}
+		return subjectRepo.save(subject);
+	}
+
 }

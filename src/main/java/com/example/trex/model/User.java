@@ -1,11 +1,8 @@
 package com.example.trex.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -35,6 +32,12 @@ public class User {
 
 	@Column
 	private String photoUrl;
+
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "class_id")
+	private Classes classes;
+
 
 	public Long getId() {
 		return id;
@@ -112,6 +115,14 @@ public class User {
 		this.photoUrl = photoUrl;
 	}
 
+	public Classes getClasses() {
+		return classes;
+	}
+
+	public void setClasses(Classes classes) {
+		this.classes = classes;
+	}
+
 	public User(Long id, String username, String password) {
 		this.id = id;
 		this.username = username;
@@ -123,4 +134,6 @@ public class User {
 		this.password = password;
 		this.email = email;
 	}
+
+
 }

@@ -6,18 +6,25 @@ import com.example.trex.model.Question;
 import com.example.trex.model.Student;
 import com.example.trex.model.Subject;
 import com.example.trex.repository.ExamHistoryRepository;
+import com.example.trex.dto.QuestionRequest;
+import com.example.trex.model.*;
+import com.example.trex.repository.AnswerRepository;
+
 import com.example.trex.repository.QuestionRepository;
 import com.example.trex.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
     private QuestionRepository questionRepository;
+    @Autowired
+    private AnswerRepository answerRepository;
 
     @Autowired
     private ExamHistoryRepository examHistoryRepository;
@@ -65,4 +72,25 @@ public class QuestionServiceImpl implements QuestionService {
 
         return examHistory;
     }
+
+    @Override
+    public void saveListQuestion(QuestionRequest questionRequest) {
+        List<Question> listQuestionRequest = questionRequest.getListQuestions();
+        Subject subject = new Subject();
+        System.err.println(questionRequest.getIdSubject());
+        subject.setId(questionRequest.getIdSubject());
+        for (int i = 0;i<listQuestionRequest.size();i++){
+            Question question = listQuestionRequest.get(i);
+            question.setSubject(subject);
+            System.err.println(subject.toString());
+            questionRepository.save(question);
+            for (int k = 0; k<listQuestionRequest.get(i).getAnswers().size();k++){
+                Answer answer = listQuestionRequest.get(i).getAnswers().get(k);
+                answer.setQuestion(question);
+                System.err.println(answer);
+                answerRepository.save(answer);
+            }
+        }
+    }
+
 }

@@ -1,11 +1,17 @@
 package com.example.trex.controllers;
 
+import com.example.trex.model.Classes;
 import com.example.trex.model.User;
 import com.example.trex.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
     @Autowired
     UserService userService;
@@ -36,4 +42,20 @@ public class UserController {
         }
         return null;
     }
+    @PostMapping("/addStudent")
+    public ResponseEntity<?> addUser(@RequestBody User u){
+        if (u.getType() == 0){
+            User user = userService.addStudent(u);
+            return  ResponseEntity.ok("ok");
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User not found");
+    }
+    @GetMapping("/getUserByID/{id}")
+    public ResponseEntity getUserById(@PathVariable(name = "id") Long id){
+        User result = userService.getUserById(id);
+        return ResponseEntity.ok(result);
+    }
+
+
+
 }
