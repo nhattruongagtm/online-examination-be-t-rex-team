@@ -1,9 +1,11 @@
 package com.example.trex.controllers;
 
 import com.example.trex.model.Classes;
+import com.example.trex.model.ResponseObject;
 import com.example.trex.model.Subject;
 import com.example.trex.model.User;
 import com.example.trex.service.ClassesService;
+import com.example.trex.service.SubjectService;
 import com.example.trex.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,8 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class ClassesController {
     @Autowired
     UserService userService;
@@ -44,6 +48,18 @@ public class ClassesController {
         return ResponseEntity.ok(result);
     }
 
-
-
+    @PostMapping("/subject/{subjectId}/addClass")
+    public ResponseEntity<ResponseObject> createClassBySubjectId(
+            @PathVariable(value = "subjectId") long subjectId,
+            @RequestBody Classes classes
+    ){
+       Classes createdClasses = classesService.addClassesBySubjectId(subjectId,classes);
+       return ResponseEntity.status(HttpStatus.OK).body(
+               new ResponseObject(
+                       "ok",
+                       "Thêm lớp thành công",
+                       classes
+               )
+       );
+    }
 }

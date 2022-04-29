@@ -29,4 +29,7 @@ public class Classes {
     @JoinColumn(name = "subject_id",referencedColumnName = "id")
     private Subject subject;
 
+    public Classes(String className) {
+        this.className = className;
+    }
 }

@@ -10,4 +10,6 @@ public interface ClassesService {
     boolean checkClassIsPresent(Classes cl);
     Classes addClasses(Classes cl);
     List<Classes> getAllClass();
+
+    Classes addClassesBySubjectId(long subjectId, Classes cl);
 }
