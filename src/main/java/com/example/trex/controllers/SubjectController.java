@@ -48,4 +48,17 @@ public class SubjectController {
 						)
 				);
 	}
+	@DeleteMapping("subject/{id}")
+	public ResponseEntity<ResponseObject> deleteSubject(
+			@PathVariable long id
+	){
+		String message = subjectService.deleteSubject(id);
+		return ResponseEntity.status(HttpStatus.OK).body(
+				new ResponseObject(
+						"ok",
+						message,
+						""+id
+				)
+		);
+	}
 }

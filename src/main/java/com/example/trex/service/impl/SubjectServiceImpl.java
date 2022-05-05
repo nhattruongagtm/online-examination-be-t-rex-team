@@ -33,4 +33,15 @@ public class SubjectServiceImpl implements SubjectService {
 		return subjectRepo.save(subject);
 	}
 
+	@Override
+	public String deleteSubject(long id) {
+		boolean isExist = subjectRepo.existsById(id);
+		if(isExist){
+			subjectRepo.deleteById(id);
+			return "Xóa môn thành công";
+		}else{
+			return "Môn không tồn tại";
+		}
+	}
+
 }
