@@ -18,6 +18,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	Optional<User> findById(Long id);
 	User findByEmail(String email);
 	User findByToken(String token);
-	@Query("SELECT u FROM User u WHERE u.type = 0")
+	@Query("SELECT u FROM User u WHERE u.type = 0 AND u.classes is null")
 	public List<User> findByType();
 }
