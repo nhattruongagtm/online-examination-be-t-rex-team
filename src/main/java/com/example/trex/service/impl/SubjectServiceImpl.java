@@ -1,14 +1,13 @@
 package com.example.trex.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.example.trex.dto.SubjectRequest;
 import com.example.trex.model.Exam;
 import com.example.trex.model.Student;
+import com.example.trex.model.User;
 import com.example.trex.repository.ExamRepository;
+import com.example.trex.repository.UserRepository;
 import com.example.trex.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +24,8 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Autowired
 	private ExamRepository examRepository;
+	@Autowired
+	private UserRepository userRepository;
 	public List<Subject> getAllByStudentId(Long studentId) {
 		List<Subject> listSubject = subjectRepo.findByStudentId(studentId);
 		return listSubject;
@@ -42,8 +43,15 @@ public class SubjectServiceImpl implements SubjectService {
 			result.put("msg","Tên môn đã tồn tại");
 			return result;
 		}
+		Optional<User> userOptional = userRepository.findById(935L);
+		if(!userOptional.isPresent()){
+			result.put("msg","Giáo viên không tồn tại");
+			return result;
+		}
+		User user = userOptional.get();
 		Student student = new Student(studentId, "Diem My");
 		subject.setStudent(student);
+		subject.setUser(user);
 		subject = subjectRepo.save(subject);
 		result.put("msg","Thêm môn thành công");
 		result.put("subject",subject);

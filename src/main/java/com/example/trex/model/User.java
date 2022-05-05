@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -37,6 +38,10 @@ public class User {
 	@JsonIgnore
 	@JoinColumn(name = "class_id")
 	private Classes classes;
+
+	@OneToMany(mappedBy = "user")
+	@JsonIgnore
+	List<Subject> subjectList;
 
 
 	public Long getId() {

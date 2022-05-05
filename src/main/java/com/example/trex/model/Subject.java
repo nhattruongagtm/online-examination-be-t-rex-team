@@ -54,6 +54,10 @@ public class Subject {
 
 	@OneToMany(mappedBy = "subject")
 	private List<Classes> classes;
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "teacher_id", referencedColumnName = "id")
+	private User user;
 
 	public Subject(String name, String code, Date examDate, Integer examTime, Double grade) {
 		this.name = name;
