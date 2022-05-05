@@ -1,6 +1,8 @@
 package com.example.trex.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.example.trex.dto.SubjectRequest;
 import com.example.trex.model.Student;
@@ -24,18 +26,22 @@ public class SubjectServiceImpl implements SubjectService {
 	}
 
 	@Override
-	public String insertSubject(long studentId, SubjectRequest subjectRequest) {
+	public Map<String, Object> insertSubject(long studentId, SubjectRequest subjectRequest) {
+		Map<String, Object> result= new HashMap<>();
 		Subject subject = new Subject(subjectRequest);
 		if (subjectRepo.findByName(
 				subject.getName()
 		).size() > 0
 		) {
-			return "Tên môn đã tồn tại";
+			result.put("msg","Tên môn đã tồn tại");
+			return result;
 		}
 		Student student = new Student(studentId, "Diem My");
 		subject.setStudent(student);
-		subjectRepo.save(subject);
-		return "Thêm môn thành công";
+		subject = subjectRepo.save(subject);
+		result.put("msg","Thêm môn thành công");
+		result.put("subject",subject);
+		return result;
 	}
 
 	@Override

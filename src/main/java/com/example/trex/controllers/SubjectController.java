@@ -1,6 +1,7 @@
 package com.example.trex.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import com.example.trex.dto.SubjectRequest;
 import com.example.trex.model.ResponseObject;
@@ -34,13 +35,13 @@ public class SubjectController {
 	@PostMapping("subject/add-subject/{studentId}")
 	public ResponseEntity<ResponseObject> insertSubject(@RequestBody SubjectRequest subjectRequest,
 														@PathVariable long studentId){
-		String message = subjectService.insertSubject(studentId,subjectRequest);
+		Map<String, Object> result = subjectService.insertSubject(studentId,subjectRequest);
 		return
 				ResponseEntity.status(HttpStatus.OK).body(
 						new ResponseObject(
 								"ok",
-								message,
-								subjectRequest
+								(String) result.get("msg"),
+								result.get("subject")
 						)
 				);
 	}
