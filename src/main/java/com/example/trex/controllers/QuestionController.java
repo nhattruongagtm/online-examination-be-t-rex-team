@@ -2,7 +2,6 @@ package com.example.trex.controllers;
 
 
 import com.example.trex.dto.AnswerRequest;
-import com.example.trex.dto.ExamRequest;
 import com.example.trex.dto.QuestionRequest;
 import com.example.trex.model.*;
 import com.example.trex.service.QuestionService;
@@ -44,8 +43,9 @@ public class QuestionController {
 
     //load answers of question
     @PostMapping("exam/question/doing")
-    public List<Question> getListAnswer(@RequestBody ExamRequest examRequest){
-        return questionService.getListQuestion(examRequest);
+    public List<Question> getListAnswer(@RequestBody Long idExam){
+
+        return questionService.getListQuestion(idExam);
     }
 
     }
