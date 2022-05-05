@@ -12,5 +12,6 @@ public interface UserService {
     User addStudent(User u);
     User getUserById(Long id);
     List<User> getUsers();
+    List<User> getUserByClassID(long classID);
 
 }

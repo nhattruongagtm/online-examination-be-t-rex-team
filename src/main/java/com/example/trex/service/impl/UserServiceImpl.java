@@ -1,6 +1,7 @@
 package com.example.trex.service.impl;
 
 import com.example.trex.model.User;
+import com.example.trex.repository.ClassesRespository;
 import com.example.trex.repository.UserRepository;
 import com.example.trex.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    ClassesRespository classesRespository;
     private static final long EXPIRE_TOKEN_AFTER_MINUTES = 30;
     @Autowired
     MailService mailService;
@@ -98,6 +101,12 @@ public class UserServiceImpl implements UserService {
             }
         }
         return u;
+    }
+
+    @Override
+    public List<User> getUserByClassID(long classID) {
+        List<User> user = classesRespository.findById(classID).get().getU();
+        return user;
     }
 
     public String generateToken(){
