@@ -2,6 +2,7 @@ package com.example.trex.controllers;
 
 import java.util.List;
 
+import com.example.trex.dto.SubjectRequest;
 import com.example.trex.model.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,21 +31,16 @@ public class SubjectController {
 		List<Subject> result = subjectService.getAllByStudentId(studentId);
 		return ResponseEntity.ok(result);
 	}
-	@PostMapping("subject/add-subject")
-	public ResponseEntity<ResponseObject> insertSubject(@RequestBody Subject subject){
-		Subject result = subjectService.insertSubject(subject);
-		return result==null ? ResponseEntity.status(HttpStatus.OK).body(
-				new ResponseObject(
-						"failed",
-						"Môn này đã tồn tại",
-						null
-				)
-		):
+	@PostMapping("subject/add-subject/{studentId}")
+	public ResponseEntity<ResponseObject> insertSubject(@RequestBody SubjectRequest subjectRequest,
+														@PathVariable long studentId){
+		String message = subjectService.insertSubject(studentId,subjectRequest);
+		return
 				ResponseEntity.status(HttpStatus.OK).body(
 						new ResponseObject(
 								"ok",
-								"Thêm môn thành công",
-								subject
+								message,
+								subjectRequest
 						)
 				);
 	}

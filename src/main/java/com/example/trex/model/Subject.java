@@ -1,5 +1,6 @@
 package com.example.trex.model;
 
+import com.example.trex.dto.SubjectRequest;
 import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -60,6 +61,10 @@ public class Subject {
 		this.examDate = examDate;
 		this.examTime = examTime;
 		this.grade = grade;
+	}
+	public Subject(SubjectRequest subjectRequest) {
+		this.name = subjectRequest.getName();
+		this.code = subjectRequest.getCode();
 	}
 
 	@Override
