@@ -1,10 +1,12 @@
 package com.example.trex.service;
 
 import com.example.trex.dto.AnswerRequest;
+import com.example.trex.dto.ExamRequest;
 import com.example.trex.dto.QuestionRequest;
 import com.example.trex.model.ExamHistory;
 import com.example.trex.model.Question;
 
+import java.util.Date;
 import java.util.List;
 
 public interface QuestionService {
@@ -13,5 +15,5 @@ public interface QuestionService {
 
     public void saveListQuestion(QuestionRequest listQuestionRequest);
 
-    public List<Question> getListQuestion(Long idSubject,Long idStudent);
+    public List<Question> getListQuestion(ExamRequest examRequest);
 }
