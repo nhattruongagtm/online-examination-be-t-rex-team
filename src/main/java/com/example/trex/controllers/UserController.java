@@ -55,6 +55,12 @@ public class UserController {
         User result = userService.getUserById(id);
         return ResponseEntity.ok(result);
     }
+    @GetMapping("/getUserByClassID/{classID}")
+    public ResponseEntity getClassByID(@PathVariable(value = "classID") long classID){
+        List<User> result = userService.getUserByClassID(classID);
+        return ResponseEntity.ok(result);
+
+    }
 
 
 
