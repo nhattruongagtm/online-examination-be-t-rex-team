@@ -72,13 +72,8 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public List<Subject> getListSubjectIdTeacher(Long Id) {
-		List<Subject> subjectList = new ArrayList<>();
-		List<Exam> examList = examRepository.findByUserId(Id);
-		for (int i = 0; i < examList.size(); i++) {
-//			System.err.println(examList.get(i).getUser().getId());
-			subjectList.add(subjectRepo.findSubjectById(examList.get(i).getSubject().getId()));
-		}
-		return subjectList;
+
+		return subjectRepo.findByUserId(Id);
 	}
 
 }

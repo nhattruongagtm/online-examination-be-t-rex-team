@@ -12,6 +12,8 @@ import com.example.trex.model.Subject;
 public interface SubjectRepository extends CrudRepository<Subject, Long> {
 
 	List<Subject> findByStudentId(Long studentId);
+	List<Subject> findByUserId(Long Id);
 	List<Subject> findByName(String name);
 	Subject findSubjectById(Long Id);
+
 }
