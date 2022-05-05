@@ -2,10 +2,8 @@ package com.example.trex.controllers;
 
 import com.example.trex.model.Classes;
 import com.example.trex.model.ResponseObject;
-import com.example.trex.model.Subject;
 import com.example.trex.model.User;
 import com.example.trex.service.ClassesService;
-import com.example.trex.service.SubjectService;
 import com.example.trex.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,9 +40,9 @@ public class ClassesController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Add Class Error");
     }
 
-    @GetMapping("/getAllClass")
-    public ResponseEntity getAllClass(){
-        List<Classes> result = classesService.getAllClass();
+    @GetMapping("/getAllClass/{subjectID}")
+    public ResponseEntity getAllClass(@PathVariable(value = "subjectID") long subjectID){
+        List<Classes> result = classesService.getClassBySubjectID(subjectID);
         return ResponseEntity.ok(result);
     }
 
