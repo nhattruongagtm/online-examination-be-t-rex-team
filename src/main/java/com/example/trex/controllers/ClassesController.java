@@ -30,6 +30,16 @@ public class ClassesController {
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Add Student To Class Error");
     }
+    @PutMapping("/removeStuToClass/{id}")
+    public ResponseEntity<?> removeStudentToClass(@PathVariable(value = "id") Long id,@RequestBody Classes cl){
+        User u = userService.getUserByID(id);
+        if (cl != null){
+            u.setClasses(null);
+            userService.save(u);
+            return ResponseEntity.ok("Remove Student In Class Success");
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Remove Student In Class Error");
+    }
 
     @PostMapping("/addClass")
     public ResponseEntity addClasses(@RequestBody Classes cl){
