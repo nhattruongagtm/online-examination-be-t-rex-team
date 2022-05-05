@@ -1,5 +1,6 @@
 package com.example.trex.controllers;
 
+import com.example.trex.dto.ExamDTO;
 import com.example.trex.model.Exam;
 import com.example.trex.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,14 @@ public class ExamController {
     @PostMapping("/list-exam/{id}")
     public List<Exam> getListExam(@PathVariable(name = "id") Long id){
         return examService.getListExam(id);
+    }
+
+    @GetMapping("/exam")
+    public Exam loadExam(@RequestParam(name = "code") String code){
+        return examService.loadExam(code);
+    }
+    @GetMapping("/exams/{studentID}")
+    public List<ExamDTO> loadExamList(@PathVariable(value = "studentID") Long id){
+        return examService.getExamListByStudentID(id);
     }
 }

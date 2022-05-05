@@ -17,7 +17,8 @@ public interface QuestionRepository extends CrudRepository<Question, Long> {
     @Override
    Optional<Question> findById(Long id);
 
-
     List<Question> findByExamId(Long idSubject);
+
+
 
 }

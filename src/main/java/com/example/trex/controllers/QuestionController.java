@@ -22,12 +22,13 @@ public class QuestionController {
     public ResponseEntity<ExamHistory> getCorrectly(@RequestBody AnswerRequest answerRequest){
 
         //dummy data
-        ExamHistory his = new ExamHistory();
-        his.setId(1l);
-        his.setCorrect(5);
-        his.setTotal(10);
-        his.setSubject(new Subject());
-        his.setStudent(new Student());
+//        ExamHistory his = new ExamHistory();
+//        his.setId(1l);
+//        his.setCorrect(5);
+//        his.setTotal(10);
+//        his.setSubject(new Subject());
+//        his.setStudent(new Student());
+
 
 //        return ResponseEntity.ok(his);
         return ResponseEntity.ok(questionService.getCorrect(answerRequest));
@@ -44,7 +45,6 @@ public class QuestionController {
     //load answers of question
     @PostMapping("exam/question/doing")
     public List<Question> getListAnswer(@RequestBody Long idExam){
-
         return questionService.getListQuestion(idExam);
     }
 

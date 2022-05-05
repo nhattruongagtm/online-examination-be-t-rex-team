@@ -1,5 +1,6 @@
 package com.example.trex.service;
 
+import com.example.trex.dto.ExamDTO;
 import com.example.trex.model.Exam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,5 +14,9 @@ public interface ExamService {
     Exam getExam(Long id);
 
     List<Exam> getListExam(Long id);
+
+    Exam loadExam(String code);
+
+    List<ExamDTO> getExamListByStudentID(Long id);
 
 }
