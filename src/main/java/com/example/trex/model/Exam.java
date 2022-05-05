@@ -28,7 +28,7 @@ public class Exam {
 
     @Temporal(TemporalType.DATE)
     private Date date;
-
+    private Date dateCreated;
     private Time time;
     @ManyToOne
     @JoinColumn(name = "idTeacher", referencedColumnName = "id")

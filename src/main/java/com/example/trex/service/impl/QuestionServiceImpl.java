@@ -1,6 +1,7 @@
 package com.example.trex.service.impl;
 
 import com.example.trex.dto.AnswerRequest;
+import com.example.trex.dto.ExamRequest;
 import com.example.trex.model.ExamHistory;
 import com.example.trex.model.Question;
 import com.example.trex.model.Student;
@@ -93,7 +94,7 @@ public class QuestionServiceImpl implements QuestionService {
         exam.setSubject(subject);
         exam.setDate(questionRequest.getDate());
         exam.setUser(user);
-
+        exam.setDateCreated(questionRequest.getCreatedDate());
         examRepository.save(exam);
 
         //
@@ -112,8 +113,8 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<Question> getListQuestion(Long idSubject,Long idStudent) {
-        return questionRepository.findBySubjectId(idSubject);
+    public List<Question> getListQuestion(ExamRequest examRequest) {
+        return questionRepository.findBySubjectId(examRequest.getExamID());
     }
 
 
