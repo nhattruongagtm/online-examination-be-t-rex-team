@@ -60,4 +60,17 @@ public class ClassesController {
                )
        );
     }
+    @DeleteMapping("/class/{id}")
+    public ResponseEntity<ResponseObject> deleteClass(
+            @PathVariable long id
+    ){
+        String message = classesService.deleteClass(id);
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject(
+                        "ok",
+                        message,
+                        ""+id
+                )
+        );
+    }
 }

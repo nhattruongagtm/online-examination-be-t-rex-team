@@ -15,4 +15,5 @@ public interface ClassesService {
     List<Classes> getClassBySubjectID(long subjectID);
 
     Classes addClassesBySubjectId(long subjectId, Classes cl);
+    String deleteClass(long id);
 }

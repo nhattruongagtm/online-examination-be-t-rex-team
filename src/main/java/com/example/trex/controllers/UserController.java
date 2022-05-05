@@ -61,6 +61,11 @@ public class UserController {
         return ResponseEntity.ok(result);
 
     }
+    @GetMapping("/getAllStudent")
+    public ResponseEntity getAllStudent(){
+        List<User> result = userService.getUserByType();
+        return ResponseEntity.ok(result);
+    }
 
 
 

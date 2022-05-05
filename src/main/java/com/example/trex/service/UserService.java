@@ -1,6 +1,7 @@
 package com.example.trex.service;
 
 import com.example.trex.model.User;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -13,5 +14,7 @@ public interface UserService {
     User getUserById(Long id);
     List<User> getUsers();
     List<User> getUserByClassID(long classID);
+
+    List<User> getUserByType();
 
 }

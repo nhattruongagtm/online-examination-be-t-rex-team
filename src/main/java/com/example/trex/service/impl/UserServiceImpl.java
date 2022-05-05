@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService {
         List<User> u = new ArrayList<>();
         List<User> u1 = userRepository.findAll();
         for (int i = 0; i < u1.size(); i++) {
-            if (u1.get(i).getType() == 0) {
+            if (u1.get(i).getType() == 0 && u1.get(i).getType() == null) {
                 u.add(u1.get(i));
             }
         }
@@ -107,6 +107,11 @@ public class UserServiceImpl implements UserService {
     public List<User> getUserByClassID(long classID) {
         List<User> user = classesRespository.findById(classID).get().getU();
         return user;
+    }
+
+    @Override
+    public List<User> getUserByType() {
+        return userRepository.findByType();
     }
 
     public String generateToken(){

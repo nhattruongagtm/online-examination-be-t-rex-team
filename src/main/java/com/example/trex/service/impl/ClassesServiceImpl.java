@@ -40,7 +40,7 @@ public class ClassesServiceImpl implements ClassesService {
 
     @Override
     public Classes addClasses(Classes cl) {
-        return classesRespository.save(cl);
+            return classesRespository.save(cl);
     }
 
     @Override
@@ -63,6 +63,17 @@ public class ClassesServiceImpl implements ClassesService {
                 }
         ).orElseThrow(() -> new RuntimeException("Not found Subject with id = " + subjectId));
         return createdClasses;
+    }
+
+    @Override
+    public String deleteClass(long id) {
+        boolean isExist = classesRespository.existsById(id);
+        if(isExist){
+            classesRespository.deleteById(id);
+            return "Xóa lớp thành công";
+        }else{
+            return "Lớp không tồn tại";
+        }
     }
 
 }
