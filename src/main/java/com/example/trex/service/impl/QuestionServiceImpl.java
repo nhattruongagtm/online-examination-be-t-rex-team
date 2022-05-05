@@ -90,10 +90,11 @@ public class QuestionServiceImpl implements QuestionService {
 
         exam.setDuration(questionRequest.getDuration());
         exam.setTime(questionRequest.getTime());
-        exam.setSubject(subject);
         exam.setDate(questionRequest.getDate());
         exam.setUser(user);
         exam.setDateCreated(questionRequest.getCreatedDate());
+        exam.setSubject(subject);
+        System.err.println(exam.getSubject().getId()+"exam....................");
         examRepository.save(exam);
 
         //

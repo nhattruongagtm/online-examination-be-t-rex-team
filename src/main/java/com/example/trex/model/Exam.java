@@ -35,9 +35,9 @@ public class Exam {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "subject",referencedColumnName = "id")
+    @JoinColumn(name = "subject_id",referencedColumnName = "id")
     private Subject subject;
-
+    
     @Override
     public String toString() {
         return "Exam{" +
