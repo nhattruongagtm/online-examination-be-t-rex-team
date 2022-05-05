@@ -8,6 +8,7 @@ import com.example.trex.model.Subject;
 
 public interface SubjectService {
 	List<Subject> getAllByStudentId(Long userId);
+	List<Subject> getListSubjectIdTeacher(Long Id);
 	Map<String,Object> insertSubject(long studentId, SubjectRequest subjectRequest);
 	String deleteSubject(long id);
 }

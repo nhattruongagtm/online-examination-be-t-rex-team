@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.example.trex.dto.SubjectRequest;
 import com.example.trex.model.ResponseObject;
+import com.example.trex.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,4 +59,12 @@ public class SubjectController {
 				)
 		);
 	}
+
+	@PostMapping("/subject/teacher")
+	public List<Subject> getSubjectByIdTeacher(@RequestBody Long idTeacher){
+
+		return subjectService.getListSubjectIdTeacher(idTeacher);
+	}
+
+
 }

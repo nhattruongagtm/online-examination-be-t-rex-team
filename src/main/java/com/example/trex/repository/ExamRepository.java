@@ -12,6 +12,5 @@ import java.util.List;
 public interface ExamRepository extends JpaRepository<Exam, Long> {
     List<Exam> findExamByIdAndDate(Long id, Date date);
     Exam findExamById(Long id);
-
     List<Exam> findByUserId(Long id);
 }

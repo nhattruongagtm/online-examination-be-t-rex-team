@@ -1,11 +1,14 @@
 package com.example.trex.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.example.trex.dto.SubjectRequest;
+import com.example.trex.model.Exam;
 import com.example.trex.model.Student;
+import com.example.trex.repository.ExamRepository;
 import com.example.trex.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,10 +23,13 @@ public class SubjectServiceImpl implements SubjectService {
 	@Autowired
 	private SubjectRepository subjectRepo;
 
+	@Autowired
+	private ExamRepository examRepository;
 	public List<Subject> getAllByStudentId(Long studentId) {
 		List<Subject> listSubject = subjectRepo.findByStudentId(studentId);
 		return listSubject;
 	}
+
 
 	@Override
 	public Map<String, Object> insertSubject(long studentId, SubjectRequest subjectRequest) {
@@ -53,6 +59,18 @@ public class SubjectServiceImpl implements SubjectService {
 		}else{
 			return "Môn không tồn tại";
 		}
+	}
+
+
+	@Override
+	public List<Subject> getListSubjectIdTeacher(Long Id) {
+		List<Subject> subjectList = new ArrayList<>();
+		List<Exam> examList = examRepository.findByUserId(Id);
+		for (int i = 0; i < examList.size(); i++) {
+//			System.err.println(examList.get(i).getUser().getId());
+			subjectList.add(subjectRepo.findSubjectById(examList.get(i).getSubject().getId()));
+		}
+		return subjectList;
 	}
 
 }
