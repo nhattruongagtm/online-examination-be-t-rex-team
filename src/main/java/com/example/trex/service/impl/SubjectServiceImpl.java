@@ -2,6 +2,8 @@ package com.example.trex.service.impl;
 
 import java.util.List;
 
+import com.example.trex.dto.SubjectRequest;
+import com.example.trex.model.Student;
 import com.example.trex.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,15 +24,29 @@ public class SubjectServiceImpl implements SubjectService {
 	}
 
 	@Override
-	public Subject insertSubject(Subject subject) {
-		if(subjectRepo.findByName(
+	public String insertSubject(long studentId, SubjectRequest subjectRequest) {
+		Subject subject = new Subject(subjectRequest);
+		if (subjectRepo.findByName(
 				subject.getName()
-		).size() >0
-		){
-
-			return null;
+		).size() > 0
+		) {
+			return "Tên môn đã tồn tại";
 		}
-		return subjectRepo.save(subject);
+		Student student = new Student(studentId, "Diem My");
+		subject.setStudent(student);
+		subjectRepo.save(subject);
+		return "Thêm môn thành công";
+	}
+
+	@Override
+	public String deleteSubject(long id) {
+		boolean isExist = subjectRepo.existsById(id);
+		if(isExist){
+			subjectRepo.deleteById(id);
+			return "Xóa môn thành công";
+		}else{
+			return "Môn không tồn tại";
+		}
 	}
 
 }

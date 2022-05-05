@@ -35,4 +35,8 @@ public class Student {
 	@JsonIgnore
 	@OneToMany(mappedBy = "student")
 	private List<ExamHistory> examHistories;
+	public Student(Long id, String fullname) {
+		this.id = id;
+		this.fullname = fullname;
+	}
 }

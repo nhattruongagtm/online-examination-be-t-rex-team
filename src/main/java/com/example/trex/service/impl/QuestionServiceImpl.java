@@ -10,6 +10,7 @@ import com.example.trex.dto.QuestionRequest;
 import com.example.trex.model.*;
 import com.example.trex.repository.AnswerRepository;
 
+import com.example.trex.repository.ExamRepository;
 import com.example.trex.repository.QuestionRepository;
 import com.example.trex.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
     private ExamHistoryRepository examHistoryRepository;
+
+    @Autowired
+    private ExamRepository examRepository;
 
     @Override
     public ExamHistory getCorrect(AnswerRequest request) {
@@ -77,8 +81,22 @@ public class QuestionServiceImpl implements QuestionService {
     public void saveListQuestion(QuestionRequest questionRequest) {
         List<Question> listQuestionRequest = questionRequest.getListQuestions();
         Subject subject = new Subject();
-        System.err.println(questionRequest.getIdSubject());
-        subject.setId(questionRequest.getIdSubject());
+        subject.setId(questionRequest.getSubjectID());
+
+        User user = new User();
+        user.setId(questionRequest.getTeacherID());
+        //save Exam.
+        Exam exam = new Exam();
+
+        exam.setDuration(questionRequest.getDuration());
+        exam.setTime(questionRequest.getTime());
+        exam.setSubject(subject);
+        exam.setDate(questionRequest.getDate());
+        exam.setUser(user);
+
+        examRepository.save(exam);
+
+        //
         for (int i = 0;i<listQuestionRequest.size();i++){
             Question question = listQuestionRequest.get(i);
             question.setSubject(subject);
