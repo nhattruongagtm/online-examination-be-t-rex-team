@@ -100,7 +100,7 @@ public class QuestionServiceImpl implements QuestionService {
         //
         for (int i = 0;i<listQuestionRequest.size();i++){
             Question question = listQuestionRequest.get(i);
-            question.setSubject(subject);
+            question.setExam(exam);
             System.err.println(subject.toString());
             questionRepository.save(question);
             for (int k = 0; k<listQuestionRequest.get(i).getAnswers().size();k++){
@@ -114,8 +114,8 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<Question> getListQuestion(Long idExam) {
-        Exam exam = examRepository.findExamById(idExam);
-        return questionRepository.findBySubjectId(exam.getId());
+//        Exam exam = examRepository.findExamById(idExam);
+        return questionRepository.findByExamId(idExam);
     }
 
 
