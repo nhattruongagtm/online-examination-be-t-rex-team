@@ -1,14 +1,16 @@
 package com.example.trex.service.impl;
 
 import com.example.trex.model.Classes;
+import com.example.trex.model.Subject;
 import com.example.trex.repository.ClassesRespository;
 import com.example.trex.repository.SubjectRepository;
 import com.example.trex.service.ClassesService;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ClassesServiceImpl implements ClassesService {
 
@@ -44,6 +46,12 @@ public class ClassesServiceImpl implements ClassesService {
     @Override
     public List<Classes> getAllClass() {
         return classesRespository.findAll();
+    }
+
+    @Override
+    public List<Classes> getClassBySubjectID(long subjectID) {
+        List<Classes> cl = subjectRespository.findById(subjectID).get().getClasses();
+        return cl;
     }
 
     @Override
