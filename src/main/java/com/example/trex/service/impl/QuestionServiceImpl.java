@@ -113,9 +113,19 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<Question> getListQuestion(Long idExam) {
-//        Exam exam = examRepository.findExamById(idExam);
-        return questionRepository.findByExamId(idExam);
+    public QuestionRequest getListQuestion(Long idExam) {
+        Exam exam = examRepository.findExamById(idExam);
+//        return questionRepository.findByExamId(idExam);
+        List<Question> questions = questionRepository.findByExamId(idExam);
+        QuestionRequest rs = new QuestionRequest();
+        rs.setListQuestions(questions);
+        rs.setDate(exam.getDate());
+        rs.setDuration(exam.getDuration());
+        rs.setTime(exam.getTime());
+        rs.setSubjectID(exam.getSubject().getId());
+        rs.setName(exam.getSubject().getName());
+
+        return rs;
     }
 
 

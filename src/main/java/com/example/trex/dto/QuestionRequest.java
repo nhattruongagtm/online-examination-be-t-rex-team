@@ -21,6 +21,7 @@ public class QuestionRequest {
     private Time time;
     private Date date;
     private int duration;
+    private String name;
     private Date createdDate;
     private List<Question> listQuestions;
 }

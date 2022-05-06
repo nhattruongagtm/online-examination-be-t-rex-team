@@ -44,8 +44,7 @@ public class QuestionController {
 
     //load answers of question
     @PostMapping("exam/question/doing")
-    public List<Question> getListAnswer(@RequestBody Long idExam){
+    public QuestionRequest getListAnswer(@RequestBody Long idExam){
         return questionService.getListQuestion(idExam);
     }
-
     }

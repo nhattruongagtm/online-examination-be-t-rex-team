@@ -13,5 +13,5 @@ public interface QuestionService {
 
     public void saveListQuestion(QuestionRequest listQuestionRequest);
 
-    public List<Question> getListQuestion(Long idExam);
+    public QuestionRequest getListQuestion(Long idExam);
 }
